@@ -5,11 +5,10 @@ module.exports =  {
   semi: true,
   singleQuote: false,
   jsxSingleQuote: false,
-  jsxBracketSameLine: true,
+  bracketSameLine: true,
   htmlWhitespaceSensitivity: "css",
   bracketSpacing: true,
   arrowParens: "always",
-  vueIndentScriptAndStyle: false,
+  vueIndentScriptAndStyle: true,
   endOfLine: "lf",
-  plugins: [require("prettier-plugin-tailwindcss")],
 }
