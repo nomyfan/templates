@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-cli",
+  "description": "nodejs-cli",
+  "type": "module",
+  "version": "0.0.0",
+  "bin": {
+    "nodejs-cli": "index.js"
+  },
+  "scripts": {
+    "dev": "tsup --config tsup.dev.config.ts --watch",
+    "build": "tsup --config tsup.config.ts",
+    "typecheck": "tsc --noEmit",
+    "fmt": "prettier --write ./src"
+  },
+  "dependencies": {
+    "commander": "^10.0.1",
+    "tsup": "^6.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18",
+    "prettier": "^2.8.8"
+  },
+  "files": [
+    "dist",
+    "index.js"
+  ]
+}
