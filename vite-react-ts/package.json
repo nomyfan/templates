@@ -10,19 +10,20 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
-    "@types/node": "^18",
-    "@types/react": "^18.2.19",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.4",
-    "autoprefixer": "^10.4.14",
-    "eslint-plugin-nomyfan": "^0.1.0",
-    "postcss": "^8.4.27",
-    "prettier": "^3.0.1",
-    "tailwindcss": "^3.3.3",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.9"
+    "@types/node": "^18.18.7",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "@vitejs/plugin-react": "^4.1.0",
+    "autoprefixer": "^10.4.16",
+    "eslint-plugin-nomyfan": "^0.1.1",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
   }
 }
