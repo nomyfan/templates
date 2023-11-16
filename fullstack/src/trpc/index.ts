@@ -5,7 +5,7 @@ import type { AppRouter } from "@/backend/api";
 export const trpc = createTRPCProxyClient<AppRouter>({
   links: [
     httpBatchLink({
-      url: "http://localhost:3000/api/trpc",
+      url: process.env.SERVER_BASE_URL as string,
     }),
   ],
 });

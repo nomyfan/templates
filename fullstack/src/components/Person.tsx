@@ -2,6 +2,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { trpc, queryClient } from "src/trpc";
 
+import * as apiSchema from "@/shared/api-schema";
+
 export function Person() {
   const {
     data: people,
@@ -17,10 +19,11 @@ export function Person() {
 
   const createPersonMutation = useMutation({
     mutationFn: async (username: string) => {
-      return await trpc.createPerson.mutate({
+      const input = apiSchema.createPersonSchema.parse({
         username,
         display_name: username,
       });
+      return await trpc.createPerson.mutate(input);
     },
   });
 
@@ -48,18 +51,27 @@ export function Person() {
           className="ml-2 bg-gray-300 px-1.5 rounded"
           disabled={createPersonMutation.isPending}
           onClick={() => {
-            if (newUsername) {
-              createPersonMutation.mutateAsync(newUsername).then(() => {
-                setNewUsername("");
+            createPersonMutation.mutateAsync(newUsername).then(() => {
+              setNewUsername("");
 
-                return queryClient.invalidateQueries({
-                  queryKey: ["people"],
-                });
+              return queryClient.invalidateQueries({
+                queryKey: ["people"],
               });
-            }
+            });
           }}
         >
           Add
+        </button>
+
+        <button
+          className="ml-2 bg-gray-300 px-1.5 rounded"
+          onClick={() => {
+            trpc.error.query(1).catch((err) => {
+              console.dir(err);
+            });
+          }}
+        >
+          Error
         </button>
       </section>
 

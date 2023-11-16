@@ -8,6 +8,7 @@ const nextApiHandler = trpcNext.createNextApiHandler({
   router: appRouter,
   middleware: cors(),
   createContext: () => ({}),
+  onError: () => {},
 });
 
 // eslint-disable-next-line import/no-default-export

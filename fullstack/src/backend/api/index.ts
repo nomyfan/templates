@@ -1,9 +1,28 @@
-import { initTRPC } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import * as personRepo from "../repository/person.repo";
 
-const t = initTRPC.create();
+import { ServerError } from "@/backend/error";
+import * as apiSchema from "@/shared/api-schema";
+
+const t = initTRPC.create({
+  errorFormatter: (opts) => {
+    const cause = opts.error.cause;
+    if (cause instanceof ServerError) {
+      return {
+        code: cause.code,
+        message: cause.message,
+        // We can assign error context as data.
+        data: {
+          ...opts.shape.data,
+        },
+      };
+    }
+
+    return opts.shape;
+  },
+});
 
 export const router = t.router;
 export const publicProcedure = t.procedure;
@@ -14,12 +33,7 @@ export const appRouter = router({
     return await personRepo.listPeople();
   }),
   createPerson: publicProcedure
-    .input(
-      z.object({
-        username: z.string().min(1).max(50),
-        display_name: z.string().min(1).max(100),
-      }),
-    )
+    .input(apiSchema.createPersonSchema)
     .mutation(async ({ input }) => {
       return await personRepo.createPerson(input);
     }),
@@ -27,6 +41,20 @@ export const appRouter = router({
     .input(z.number().int().positive())
     .mutation(async ({ input: id }) => {
       await personRepo.deletePersonById(id);
+    }),
+  error: publicProcedure
+    .input(z.number().int().positive())
+    .query(async ({ input }) => {
+      const error = new ServerError({
+        code: -1,
+        message: "oops...",
+        context: input,
+      });
+      throw new TRPCError({
+        message: error.message,
+        code: "INTERNAL_SERVER_ERROR",
+        cause: error,
+      });
     }),
 });
 

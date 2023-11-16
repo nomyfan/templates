@@ -9,7 +9,7 @@ const dialect = new PostgresDialect({
   pool: new Pool({
     database: process.env.PG_DATABASE,
     password: process.env.PG_PASSWORD,
-    host: process.env.PG_HOST,
+    host: process.env.PG_HOSTNAME,
     user: process.env.PG_USER,
     port: Number(process.env.PG_PORT),
     max: 10,
