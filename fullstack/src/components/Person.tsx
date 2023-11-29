@@ -1,6 +1,7 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { trpc, queryClient } from "src/trpc";
+import { trpc } from "src/trpc";
+import useSWR from "swr";
+import useSWRMutation from "swr/mutation";
 
 import * as apiSchema from "@/shared/api-schema";
 
@@ -8,36 +9,35 @@ export function Person() {
   const {
     data: people,
     isLoading,
-    isFetching,
-  } = useQuery({
-    queryKey: ["people"],
-    queryFn: async () => {
+    isValidating,
+    mutate,
+  } = useSWR(
+    ["people"],
+    async () => {
       return await trpc.listPeople.query();
     },
-    refetchOnWindowFocus: false,
-  });
+    { revalidateOnFocus: false },
+  );
 
-  const createPersonMutation = useMutation({
-    mutationFn: async (username: string) => {
+  const createPersonMutation = useSWRMutation(
+    "createPerson",
+    async (_, { arg: username }: { arg: string }) => {
       const input = apiSchema.createPersonSchema.parse({
         username,
         display_name: username,
       });
       return await trpc.createPerson.mutate(input);
     },
-  });
+  );
 
-  const deletePersonMutation = useMutation({
-    mutationFn: async (id: number) => {
+  const deletePersonMutation = useSWRMutation(
+    "deletePerson",
+    async (_, { arg: id }: { arg: number }) => {
       return await trpc.deletePerson.mutate(id);
     },
-  });
+  );
 
   const [newUsername, setNewUsername] = useState<string>("");
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="p-2">
@@ -49,14 +49,12 @@ export function Person() {
         />
         <button
           className="ml-2 bg-gray-300 px-1.5 rounded"
-          disabled={createPersonMutation.isPending}
+          disabled={createPersonMutation.isMutating}
           onClick={() => {
-            createPersonMutation.mutateAsync(newUsername).then(() => {
+            createPersonMutation.trigger(newUsername).then(() => {
               setNewUsername("");
 
-              return queryClient.invalidateQueries({
-                queryKey: ["people"],
-              });
+              return mutate();
             });
           }}
         >
@@ -73,9 +71,15 @@ export function Person() {
         >
           Error
         </button>
+
+        <span className="ml-2">
+          {createPersonMutation.isMutating && <span>Creating...</span>}
+          {deletePersonMutation.isMutating && <span>Deleting...</span>}
+        </span>
       </section>
 
-      {isFetching && <div>...</div>}
+      {isLoading && <div>Loading...</div>}
+      {isValidating && !isLoading && <div>Revalidating...</div>}
 
       {people?.length === 0 && <div>Empty</div>}
 
@@ -89,12 +93,10 @@ export function Person() {
                 title={`Delete ${person.display_name}`}
                 onClick={(evt) => {
                   evt.preventDefault();
-                  if (!deletePersonMutation.isPending) {
-                    deletePersonMutation.mutateAsync(person.id).then(() =>
-                      queryClient.invalidateQueries({
-                        queryKey: ["people"],
-                      }),
-                    );
+                  if (!deletePersonMutation.isMutating) {
+                    deletePersonMutation
+                      .trigger(person.id)
+                      .then(() => mutate());
                   }
                 }}
               >
