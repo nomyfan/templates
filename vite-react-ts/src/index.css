@@ -1,2 +1,5 @@
-@tailwind base;
-@tailwind utilities;
+:root {
+  font-family: -apple-system, ui-sans-serif, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}

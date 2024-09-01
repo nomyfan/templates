@@ -1,4 +1,5 @@
-module.exports =  {
+// eslint-disable-next-line import/no-anonymous-default-export, import/no-default-export
+export default {
   tabWidth: 2,
   useTabs: false,
   trailingComma: "all",

@@ -1,15 +1,14 @@
-import { cn } from "./lib/utils";
+import { cn } from "./utils/cn";
 
 function App() {
   return (
-    <div
+    <h1
       className={cn(
-        "text-8xl font-extrabold text-transparent text-center",
-        "bg-clip-text bg-gradient-to-r from-amber-300 to-red-500",
+        "text-center text-transparent bg-clip-text bg-gradient-to-tr from-amber-300 to-red-500",
       )}
     >
       vite-react-ts
-    </div>
+    </h1>
   );
 }
 
