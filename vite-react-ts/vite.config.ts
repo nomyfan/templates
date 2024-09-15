@@ -3,7 +3,9 @@ import UnoCSS from "unocss/vite";
 import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
-// eslint-disable-next-line import/no-default-export
 export default defineConfig({
+  build: {
+    target: "es2017",
+  },
   plugins: [UnoCSS(), react()],
 });

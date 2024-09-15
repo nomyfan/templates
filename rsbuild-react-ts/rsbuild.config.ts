@@ -2,7 +2,6 @@ import type { RsbuildConfig } from "@rsbuild/core";
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 
-// eslint-disable-next-line import/no-default-export
 export default defineConfig(({ env }) => {
   const isProd = env === "production";
 

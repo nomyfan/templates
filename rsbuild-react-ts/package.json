@@ -1,25 +1,45 @@
 {
   "name": "rsbuild-react-ts",
   "version": "0.0.0",
+  "packageManager": "pnpm@9.10.0+sha256.355a8ab8dbb6ad41befbef39bc4fd6b5df85e12761d2724bd01f13e878de4b13",
   "scripts": {
     "dev": "rsbuild dev",
     "build": "rsbuild build",
-    "preview": "rsbuild preview"
+    "preview": "rsbuild preview",
+    "lint": "biome lint src --fix",
+    "fmt": "biome format src --fix"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@rsbuild/core": "1.0.1-rc.0",
-    "@rsbuild/plugin-react": "1.0.1-rc.0",
-    "@types/react": "^18.3.4",
+    "@biomejs/biome": "^1.9.0",
+    "@rsbuild/core": "1.0.4",
+    "@rsbuild/plugin-react": "1.0.2",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@unocss/postcss": "^0.62.3",
-    "eslint-plugin-nomyfan": "^0.1.3",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.2",
     "unocss": "^0.62.3"
   },
-  "packageManager": "pnpm@9.8.0+sha256.56a9e76b51796ca7f73b85e44cf83712862091f4d498c0ce4d5b7ecdc6ba18f7"
+  "browserslist": {
+    "production": [
+      "last 2 versions",
+      "not ie 11",
+      "not op_mini all",
+      "not dead",
+      "chrome >= 55",
+      "firefox >= 52",
+      "safari >= 11",
+      "edge >= 15",
+      "opera >= 42",
+      "ios >= 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

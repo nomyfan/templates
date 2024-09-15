@@ -1,13 +1,10 @@
-import transformerVariantGroup from "@unocss/transformer-variant-group";
 import { defineConfig, presetUno } from "unocss";
 
-// eslint-disable-next-line import/no-default-export
 export default defineConfig({
   content: {
-    filesystem: ["./src/**/*.{html,jsx,tsx}"],
+    filesystem: ["./src/**/*.{jsx,tsx}"],
   },
   presets: [presetUno()],
-  transformers: [transformerVariantGroup()],
   shortcuts: {
     "flex-center": "flex items-center justify-center",
     "absolute-center":
