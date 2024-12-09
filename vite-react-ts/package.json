@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "packageManager": "pnpm@9.10.0+sha256.355a8ab8dbb6ad41befbef39bc4fd6b5df85e12761d2724bd01f13e878de4b13",
+  "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -12,20 +12,20 @@
     "fmt": "biome format src --fix"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.0",
-    "@types/node": "^20.16.5",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@unocss/transformer-variant-group": "^0.62.3",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^20.17.9",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "@unocss/transformer-variant-group": "^0.65.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
+    "postcss": "^8.4.49",
     "typescript": "^5.6.2",
-    "unocss": "^0.62.3",
-    "vite": "^5.4.5"
+    "unocss": "^0.65.1",
+    "vite": "^6.0.3"
   }
 }

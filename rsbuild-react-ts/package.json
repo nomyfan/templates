@@ -1,7 +1,7 @@
 {
   "name": "rsbuild-react-ts",
   "version": "0.0.0",
-  "packageManager": "pnpm@9.10.0+sha256.355a8ab8dbb6ad41befbef39bc4fd6b5df85e12761d2724bd01f13e878de4b13",
+  "packageManager": "pnpm@9.15.0+sha256.09a8fe31a34fda706354680619f4002f4ccef6dadff93240d24ef6c831f0fd28",
   "scripts": {
     "dev": "rsbuild dev",
     "build": "rsbuild build",
@@ -10,18 +10,18 @@
     "fmt": "biome format src --fix"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.0",
-    "@rsbuild/core": "1.0.4",
-    "@rsbuild/plugin-react": "1.0.2",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@unocss/postcss": "^0.62.3",
+    "@biomejs/biome": "^1.9.4",
+    "@rsbuild/core": "1.1.9",
+    "@rsbuild/plugin-react": "1.1.0",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "@unocss/postcss": "^0.65.1",
     "typescript": "^5.6.2",
-    "unocss": "^0.62.3"
+    "unocss": "^0.65.1"
   },
   "browserslist": {
     "production": [
